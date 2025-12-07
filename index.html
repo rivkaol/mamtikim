@@ -1,388 +1,408 @@
-import React from 'react';
-import { 
-  Leaf, Star, Check, ChevronLeft, PlayCircle, Clock, Heart, 
-  Image as ImageIcon, ShieldCheck, Zap, ShoppingCart, Brain, Sparkles, Filter, Mail 
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רבקה הולצברג - בריאות שבאה מהטבע</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Rubik -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-const LandingPage = () => {
-  // Brand Colors Configuration
-  const colors = {
-    primaryGreen: '#1B4D3E',
-    accentGold: '#D4AF37',
-    bgCream: '#F8F9FA',
-    textDark: '#333333',
-  };
+    <style>
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: #F8F9FA;
+            color: #333333;
+        }
 
-  const paymentLink = "https://private.invoice4u.co.il/newsite/he/clearing/public/i4u-clearing?ProductGuid=c4b694bb-64c9-4f5e-bb4d-f04499898afa";
+        /* Custom Colors Variables */
+        :root {
+            --primary-green: #1B4D3E;
+            --accent-gold: #D4AF37;
+            --bg-cream: #F8F9FA;
+        }
 
-  const scrollToOffer = () => {
-    document.getElementById('offer-section').scrollIntoView({ behavior: 'smooth' });
-  };
+        .text-primary-green { color: var(--primary-green); }
+        .bg-primary-green { background-color: var(--primary-green); }
+        .text-accent-gold { color: var(--accent-gold); }
+        .bg-accent-gold { background-color: var(--accent-gold); }
+        .border-accent-gold { border-color: var(--accent-gold); }
 
-  const handlePurchase = () => {
-    window.location.href = paymentLink;
-  };
-
-  return (
-    <div 
-      className="min-h-screen font-sans"
-      style={{ 
-        backgroundColor: colors.bgCream, 
-        color: colors.textDark,
-        fontFamily: "'Rubik', sans-serif",
-        direction: 'rtl'
-      }}
-    >
-      {/* Import Rubik Font */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap');
-        
         .glass-card {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.8);
-          box-shadow: 0 10px 30px rgba(27, 77, 62, 0.05);
-          border-radius: 20px;
-          transition: transform 0.3s ease;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(27, 77, 62, 0.05);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .glass-card:hover {
-          transform: translateY(-5px);
+            transform: translateY(-5px);
         }
         
         .pattern-bg {
-          background-image: radial-gradient(${colors.primaryGreen} 0.5px, transparent 0.5px), radial-gradient(${colors.primaryGreen} 0.5px, ${colors.bgCream} 0.5px);
-          background-size: 20px 20px;
-          background-position: 0 0, 10px 10px;
-          opacity: 0.03;
+            background-image: radial-gradient(#1B4D3E 0.5px, transparent 0.5px), radial-gradient(#1B4D3E 0.5px, #F8F9FA 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.03;
         }
 
         .cta-button {
-          background-color: ${colors.accentGold};
-          color: white;
-          border-radius: 16px;
-          transition: all 0.3s ease;
-          cursor: pointer;
+            background-color: var(--accent-gold);
+            color: white;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .cta-button:hover {
-          transform: scale(1.02);
-          box-shadow: 0 15px 30px rgba(212, 175, 55, 0.25);
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.25);
         }
 
         .feature-icon-box {
-          background: #fff;
-          border-radius: 12px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 50px;
-          height: 50px;
-          color: ${colors.accentGold};
-          margin-bottom: 1rem;
-          flex-shrink: 0;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            flex-shrink: 0;
         }
-      `}</style>
-
-      {/* Decorative Background Pattern */}
-      <div className="fixed inset-0 pattern-bg pointer-events-none z-0" />
-
-      {/* Main Content Container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
         
-        {/* Header / Logo */}
-        <header className="flex justify-center mb-16">
-          <div className="h-32 flex items-center justify-center">
-            <img 
-              src="logo.jpg.png" 
-              alt="רבקה הולצברג לוגו" 
-              className="h-full object-contain"
-            />
-          </div>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative">
+
+    <!-- Decorative Background Pattern -->
+    <div class="fixed inset-0 pattern-bg pointer-events-none z-0"></div>
+
+    <!-- Main Content Container -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
+        
+        <!-- Header / Logo -->
+        <header class="flex justify-center mb-16">
+            <div class="h-32 flex items-center justify-center">
+                <!-- Using the exact filename you provided -->
+                <img src="logo.jpg.png" alt="רבקה הולצברג לוגו" class="h-full object-contain">
+            </div>
         </header>
 
-        {/* --- HERO SECTION --- */}
-        <div className="text-center mb-24">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-sm font-medium mb-6 text-green-800 border border-green-100">
-            <Sparkles size={16} className="text-yellow-500" />
-            <span>המדריך המלא שיעשה לך סדר במטבח</span>
-          </div>
+        <!-- --- HERO SECTION --- -->
+        <div class="text-center mb-24">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-sm font-medium mb-6 text-green-800 border border-green-100">
+                <i data-lucide="sparkles" class="w-4 h-4 text-yellow-500"></i>
+                <span>המדריך המלא שיעשה לך סדר במטבח</span>
+            </div>
 
-          <h1 className="text-5xl md:text-7xl font-black leading-tight mb-8" style={{ color: colors.primaryGreen }}>
-            סוכר, ממתיקים <br/>
-            <span className="relative inline-block">
-              וכל האמת שביניהם
-              <svg className="absolute w-full h-3 -bottom-1 right-0" viewBox="0 0 100 10" preserveAspectRatio="none">
-                 <path d="M0 5 Q 50 10 100 5" stroke={colors.accentGold} strokeWidth="4" fill="none" />
-              </svg>
-            </span>
-          </h1>
-          
-          <div className="max-w-3xl mx-auto space-y-8 text-xl leading-relaxed font-light mb-12">
-            <p>
-              אם פעם חשבת ש"סוכר זה סוכר" ושאין באמת הבדל בין הממתיקים…<br/>
-              <span className="font-bold">ההדרכה הזו הולכת לפתוח לך עולם חדש.</span>
-            </p>
-            <p className="opacity-80 text-lg">
-              במהלך השנים פגשתי עשרות נשים שמתבלבלות בין מייפל לסילאן,
-              בין סטיביה לאריתריטול, בין “ללא סוכר” לבין “בריא”.
-              וגם אצלי – עד שלא נכנסתי לעומק – היו הרבה סימני שאלה.
-            </p>
+            <h1 class="text-5xl md:text-7xl font-black leading-tight mb-8 text-primary-green">
+                סוכר, ממתיקים <br/>
+                <span class="relative inline-block">
+                    וכל האמת שביניהם
+                    <svg class="absolute w-full h-3 -bottom-1 right-0" viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 5 Q 50 10 100 5" stroke="#D4AF37" stroke-width="4" fill="none" />
+                    </svg>
+                </span>
+            </h1>
             
-            {/* Special Highlight Box for the Sentence */}
-            <div className="bg-white p-6 rounded-r-xl border-r-4 shadow-sm text-right mx-auto max-w-2xl transform rotate-1" style={{ borderColor: colors.accentGold }}>
-              <p className="font-medium text-2xl leading-snug" style={{ color: colors.primaryGreen }}>
-                "בהדרכה הקרובה אני הולכת לעשות סדר גדול ופשוט,
-                ולתת לך תמונה ברורה שתשים סוף לבלבול."
-              </p>
-            </div>
-          </div>
-
-          {/* Main Image (photo1.png) */}
-          <div className="relative max-w-3xl mx-auto mb-16 group">
-             <div className="relative z-10 rounded-[32px] overflow-hidden shadow-2xl border-[6px] md:h-[450px] bg-white flex items-center justify-center transition-transform duration-700 hover:scale-[1.01]" style={{ borderColor: 'white' }}>
-                <img 
-                  src="photo1.png" 
-                  alt="שולחן ערוך עם ממתיקים טבעיים" 
-                  className="w-full h-full object-cover"
-                />
-             </div>
-             {/* Abstract Shapes behind image */}
-             <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-20 blur-2xl" style={{ backgroundColor: colors.accentGold }}></div>
-             <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full opacity-20 blur-2xl" style={{ backgroundColor: colors.primaryGreen }}></div>
-          </div>
-
-          <div className="mt-12">
-            <button 
-              onClick={scrollToOffer}
-              className="cta-button px-12 py-5 font-bold text-xl inline-flex items-center gap-3 shadow-xl transform transition-transform"
-            >
-              כן, אני רוצה ללמוד על הממתיק המומלץ עבורי
-              <ChevronLeft size={24} />
-            </button>
-          </div>
-        </div>
-
-        {/* --- SECTION 1: WHAT AWAITS YOU --- */}
-        <div className="mb-32">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.primaryGreen }}>מה באמת מחכה לך בפנים?</h2>
-            <p className="text-lg opacity-70">כל מה שצריך לדעת כדי לבחור נכון</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* 1. Behind the scenes */}
-            <div className="glass-card p-8">
-              <div className="feature-icon-box"><Leaf size={24} /></div>
-              <h3 className="text-lg font-bold mb-3 text-gray-800">מה עומד מאחורי כל ממתיק</h3>
-              <p className="opacity-80 leading-relaxed">איך הוא מופק ואיך הוא משפיע על הגוף.</p>
-            </div>
-
-            {/* 2. Pros vs Cons */}
-            <div className="glass-card p-8">
-              <div className="feature-icon-box"><ShieldCheck size={24} /></div>
-              <h3 className="text-lg font-bold mb-3 text-gray-800">האמת על היתרונות והחסרונות</h3>
-              <p className="opacity-80 leading-relaxed">יתרונות אמיתיים לעומת חסרונות שמעדיפים לא לספר.</p>
-            </div>
-
-            {/* 3. When to use */}
-            <div className="glass-card p-8">
-              <div className="feature-icon-box"><Check size={24} /></div>
-              <h3 className="text-lg font-bold mb-3 text-gray-800">מתי להשתמש ומתי להימנע</h3>
-              <p className="opacity-80 leading-relaxed">מתי נכון להשתמש בכל ממתיק ומתי עדיף להימנע לחלוטין.</p>
-            </div>
-
-            {/* 4. Body impact */}
-            <div className="glass-card p-8">
-              <div className="feature-icon-box"><Zap size={24} /></div>
-              <h3 className="text-lg font-bold mb-3 text-gray-800">ההשפעה הפיזית</h3>
-              <p className="opacity-80 leading-relaxed">מה קורה למערכת העיכול, לרמת הסוכר, לאנרגיה ולעור הפנים.</p>
-            </div>
-
-            {/* 5. How to choose */}
-            <div className="glass-card p-8">
-              <div className="feature-icon-box"><ShoppingCart size={24} /></div>
-              <h3 className="text-lg font-bold mb-3 text-gray-800">הבחירה הנכונה לשגרה</h3>
-              <p className="opacity-80 leading-relaxed">איך לבחור ממתיק שגם טעים, גם בריא וגם מתאים לשגרה שלך.</p>
-            </div>
-
-            {/* 6. Bonus */}
-            <div className="glass-card p-8 bg-gradient-to-br from-white to-green-50 border-green-100">
-               <div className="feature-icon-box bg-green-100 text-green-800"><Heart size={24} fill={colors.accentGold} className="text-transparent" /></div>
-               <h3 className="text-lg font-bold mb-3" style={{ color: colors.primaryGreen }}>הבונוס האישי שלי</h3>
-               <p className="opacity-90 leading-relaxed">
-                 ובסוף ההדרכה אשתף גם מה אני משתמשת בבית שלי, 
-                 ואיך הגעתי לבחור דווקא בו אחרי אינספור ניסיונות.
-               </p>
-            </div>
-          </div>
-        </div>
-
-        {/* --- SECTION 2: TARGET AUDIENCE --- */}
-        <div className="mb-32 max-w-4xl mx-auto">
-           <div className="flex flex-col md:flex-row items-center gap-12">
-             <div className="flex-1">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 relative" style={{ color: colors.primaryGreen }}>
-                  למי ההדרכה הזו מתאימה?
-                  <span className="absolute -bottom-2 right-0 w-20 h-1 bg-yellow-400 rounded-full"></span>
-                </h2>
+            <div class="max-w-3xl mx-auto space-y-8 text-xl leading-relaxed font-light mb-12">
+                <p>
+                    אם פעם חשבת ש"סוכר זה סוכר" ושאין באמת הבדל בין הממתיקים…<br/>
+                    <span class="font-bold">ההדרכה הזו הולכת לפתוח לך עולם חדש.</span>
+                </p>
+                <p class="opacity-80 text-lg">
+                    במהלך השנים פגשתי עשרות נשים שמתבלבלות בין מייפל לסילאן,
+                    בין סטיביה לאריתריטול, בין “ללא סוכר” לבין “בריא”.
+                    וגם אצלי – עד שלא נכנסתי לעומק – היו הרבה סימני שאלה.
+                </p>
                 
-                <div className="space-y-6">
-                  {[
-                    "למי שמנסה להפחית סוכר",
-                    "למי שמחפשת תזונה בריאה בלי לוותר על מתוק",
-                    "למי שמתקשה לבחור בין כל האופציות בחנויות",
-                    "למי שרוצה להבין סוף-סוף מה עומד מאחורי כל ממתיק",
-                    "ולכל מי שבריאות המטבח שלה חשובה לה"
-                  ].map((text, idx) => (
-                    <div key={idx} className="flex items-center gap-4 group">
-                      <div className="w-10 h-10 rounded-full bg-white border border-green-100 flex items-center justify-center shadow-sm shrink-0">
-                        <Check size={20} className="text-green-700" strokeWidth={3} />
-                      </div>
-                      <span className="text-lg font-medium opacity-80">{text}</span>
-                    </div>
-                  ))}
+                <!-- Special Highlight Box -->
+                <div class="bg-white p-6 rounded-r-xl border-r-4 border-accent-gold shadow-sm text-right mx-auto max-w-2xl transform rotate-1">
+                    <p class="font-medium text-2xl leading-snug text-primary-green">
+                        "בהדרכה הקרובה אני הולכת לעשות סדר גדול ופשוט,
+                        ולתת לך תמונה ברורה שתשים סוף לבלבול."
+                    </p>
                 </div>
-             </div>
-             
-             {/* Visual representation / Image (photo2.png) */}
-             <div className="flex-1 w-full">
-                <div className="bg-white rounded-3xl h-80 w-full relative overflow-hidden shadow-lg border-4 border-white">
-                   <img 
-                      src="photo2.png" 
-                      alt="בחירת מוצרים בחנות" 
-                      className="w-full h-full object-cover"
-                   />
-                </div>
-             </div>
-           </div>
-        </div>
-
-        {/* --- SECTION 3: OUTCOMES --- */}
-        <div className="mb-32 rounded-[40px] p-8 md:p-16 text-center relative overflow-hidden" style={{ backgroundColor: colors.primaryGreen }}>
-           {/* Background Decorations */}
-           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-              <div className="absolute top-10 right-10 w-40 h-40 rounded-full bg-white blur-3xl"></div>
-              <div className="absolute bottom-10 left-10 w-60 h-60 rounded-full bg-yellow-500 blur-3xl"></div>
-           </div>
-
-           <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white">
-                עם מה תצאי בסוף ההדרכה?
-              </h2>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                 {/* Card 1 */}
-                 <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white hover:bg-white/15 transition-colors h-full">
-                    <div className="mb-4 inline-block p-3 bg-white/20 rounded-full">
-                      <Filter size={24} className="text-yellow-300" />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">סינון חכם</h3>
-                    <p className="opacity-90 font-light text-sm leading-relaxed">
-                      הבנה ברורה אילו ממתיקים נכנסים למטבח שלך ואילו יוצאים.
-                    </p>
-                 </div>
-
-                 {/* Card 2 */}
-                 <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white hover:bg-white/15 transition-colors h-full">
-                    <div className="mb-4 inline-block p-3 bg-white/20 rounded-full">
-                      <Brain size={24} className="text-yellow-300" />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">בהירות ושליטה</h3>
-                    <p className="opacity-90 font-light text-sm leading-relaxed">
-                      אין יותר בלבול בין "טבעי" ל"בריא" – הכל מובן.
-                    </p>
-                 </div>
-
-                 {/* Card 3 */}
-                 <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white hover:bg-white/15 transition-colors h-full">
-                    <div className="mb-4 inline-block p-3 bg-white/20 rounded-full">
-                      <ShoppingCart size={24} className="text-yellow-300" />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">בחירה מעשית</h3>
-                    <p className="opacity-90 font-light text-sm leading-relaxed">
-                      מה לקנות, מה לשלב ומה עדיף להשאיר על המדף.
-                    </p>
-                 </div>
-
-                 {/* Card 4 */}
-                 <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white hover:bg-white/15 transition-colors h-full">
-                    <div className="mb-4 inline-block p-3 bg-white/20 rounded-full">
-                      <ShieldCheck size={24} className="text-yellow-300" />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">כלים להחלטה</h3>
-                    <p className="opacity-90 font-light text-sm leading-relaxed">
-                      כלים לקבל החלטות נכונות גם מול תוויות מסובכות.
-                    </p>
-                 </div>
-              </div>
-           </div>
-        </div>
-
-        {/* --- PRICING & CTA --- */}
-        <div id="offer-section" className="relative text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6" style={{ color: colors.primaryGreen }}>
-            רוצה להבין אחת ולתמיד מה באמת בריא?
-          </h2>
-          <p className="text-xl opacity-80 mb-10">
-            השאירי שם ומייל ותיכנסי לרשימת המשתתפות.<br/>
-            כבר בהרשמה תקבלי ממני הודעה אישית עם כל הפרטים
-            <span className="font-bold mr-1 inline-flex items-center gap-1 text-green-700 bg-green-50 px-2 py-1 rounded-md">
-              <Mail size={16} /> בשליחה מיידית למייל!
-            </span>
-          </p>
-          
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-yellow-400/30 relative">
-            <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-green-900 font-bold px-6 py-2 rounded-full shadow-lg text-sm">
-              מחיר מיוחד
             </div>
 
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
-               <div className="text-right flex-1">
-                  <div className="flex items-center gap-3 mb-3">
-                     <PlayCircle className="text-yellow-500" />
-                     <span className="font-medium">הקלטה מלאה לצפייה חוזרת</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                     <Clock className="text-yellow-500" />
-                     <span className="font-medium">גישה נוחה מכל מקום</span>
-                  </div>
-               </div>
-
-               <div className="text-center bg-gray-50 p-6 rounded-2xl min-w-[200px]">
-                  <p className="text-sm text-gray-500 mb-1">ההשקעה שלך</p>
-                  <div className="text-5xl font-bold" style={{ color: colors.primaryGreen }}>37 ₪</div>
-               </div>
+            <!-- Main Image -->
+            <div class="relative max-w-3xl mx-auto mb-16 group">
+                <div class="relative z-10 rounded-[32px] overflow-hidden shadow-2xl border-[6px] border-white md:h-[450px] bg-white flex items-center justify-center transition-transform duration-700 hover:scale-[1.01]">
+                    <!-- Using photo1.png -->
+                    <img src="photo1.png" alt="שולחן ערוך עם ממתיקים טבעיים" class="w-full h-full object-cover">
+                </div>
+                <!-- Abstract Shapes behind image -->
+                <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-20 blur-2xl bg-accent-gold"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 rounded-full opacity-20 blur-2xl bg-primary-green"></div>
             </div>
 
-            <button 
-              onClick={handlePurchase}
-              className="w-full cta-button py-5 text-xl font-bold flex justify-center items-center gap-3 shadow-lg hover:shadow-2xl"
-            >
-              כן, אני רוצה ללמוד מה הממתיק הבריא עבורי
-              <ChevronLeft size={24} strokeWidth={3} />
-            </button>
-            
-            <p className="text-xs text-gray-400 mt-6 flex justify-center gap-4">
-              <span>🔒 תשלום מאובטח</span>
-              <span>⚡ שליחה מיידית</span>
-              <span>📩 קבלה נשלחת למייל</span>
+            <div class="mt-12">
+                <button onclick="scrollToOffer()" class="cta-button px-12 py-5 font-bold text-xl inline-flex items-center gap-3 shadow-xl transform transition-transform">
+                    כן, אני רוצה ללמוד על הממתיק המומלץ עבורי
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- --- SECTION 1: WHAT AWAITS YOU --- -->
+        <div class="mb-32">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary-green">מה באמת מחכה לך בפנים?</h2>
+                <p class="text-lg opacity-70">כל מה שצריך לדעת כדי לבחור נכון</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1. Behind the scenes -->
+                <div class="glass-card p-8">
+                    <div class="feature-icon-box"><i data-lucide="leaf" class="w-6 h-6"></i></div>
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">מה עומד מאחורי כל ממתיק</h3>
+                    <p class="opacity-80 leading-relaxed">איך הוא מופק ואיך הוא משפיע על הגוף.</p>
+                </div>
+
+                <!-- 2. Pros vs Cons -->
+                <div class="glass-card p-8">
+                    <div class="feature-icon-box"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">האמת על היתרונות והחסרונות</h3>
+                    <p class="opacity-80 leading-relaxed">יתרונות אמיתיים לעומת חסרונות שמעדיפים לא לספר.</p>
+                </div>
+
+                <!-- 3. When to use -->
+                <div class="glass-card p-8">
+                    <div class="feature-icon-box"><i data-lucide="check" class="w-6 h-6"></i></div>
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">מתי להשתמש ומתי להימנע</h3>
+                    <p class="opacity-80 leading-relaxed">מתי נכון להשתמש בכל ממתיק ומתי עדיף להימנע לחלוטין.</p>
+                </div>
+
+                <!-- 4. Body impact -->
+                <div class="glass-card p-8">
+                    <div class="feature-icon-box"><i data-lucide="zap" class="w-6 h-6"></i></div>
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">ההשפעה הפיזית</h3>
+                    <p class="opacity-80 leading-relaxed">מה קורה למערכת העיכול, לרמת הסוכר, לאנרגיה ולעור הפנים.</p>
+                </div>
+
+                <!-- 5. How to choose -->
+                <div class="glass-card p-8">
+                    <div class="feature-icon-box"><i data-lucide="shopping-cart" class="w-6 h-6"></i></div>
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">הבחירה הנכונה לשגרה</h3>
+                    <p class="opacity-80 leading-relaxed">איך לבחור ממתיק שגם טעים, גם בריא וגם מתאים לשגרה שלך.</p>
+                </div>
+
+                <!-- 6. Bonus -->
+                <div class="glass-card p-8 bg-gradient-to-br from-white to-green-50 border-green-100">
+                    <div class="feature-icon-box bg-green-100 text-green-800">
+                        <i data-lucide="heart" class="w-6 h-6 fill-current text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3 text-primary-green">הבונוס האישי שלי</h3>
+                    <p class="opacity-90 leading-relaxed">
+                        ובסוף ההדרכה אשתף גם מה אני משתמשת בבית שלי, 
+                        ואיך הגעתי לבחור דווקא בו אחרי אינספור ניסיונות.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- --- SECTION 2: TARGET AUDIENCE --- -->
+        <div class="mb-32 max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8 relative text-primary-green">
+                        למי ההדרכה הזו מתאימה?
+                        <span class="absolute -bottom-2 right-0 w-20 h-1 bg-yellow-400 rounded-full"></span>
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-white border border-green-100 flex items-center justify-center shadow-sm shrink-0">
+                                <i data-lucide="check" class="w-5 h-5 text-green-700 font-bold"></i>
+                            </div>
+                            <span class="text-lg font-medium opacity-80">למי שמנסה להפחית סוכר</span>
+                        </div>
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-white border border-green-100 flex items-center justify-center shadow-sm shrink-0">
+                                <i data-lucide="check" class="w-5 h-5 text-green-700 font-bold"></i>
+                            </div>
+                            <span class="text-lg font-medium opacity-80">למי שמחפשת תזונה בריאה בלי לוותר על מתוק</span>
+                        </div>
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-white border border-green-100 flex items-center justify-center shadow-sm shrink-0">
+                                <i data-lucide="check" class="w-5 h-5 text-green-700 font-bold"></i>
+                            </div>
+                            <span class="text-lg font-medium opacity-80">למי שמתקשה לבחור בין כל האופציות בחנויות</span>
+                        </div>
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-white border border-green-100 flex items-center justify-center shadow-sm shrink-0">
+                                <i data-lucide="check" class="w-5 h-5 text-green-700 font-bold"></i>
+                            </div>
+                            <span class="text-lg font-medium opacity-80">למי שרוצה להבין סוף-סוף מה עומד מאחורי כל ממתיק</span>
+                        </div>
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-white border border-green-100 flex items-center justify-center shadow-sm shrink-0">
+                                <i data-lucide="check" class="w-5 h-5 text-green-700 font-bold"></i>
+                            </div>
+                            <span class="text-lg font-medium opacity-80">ולכל מי שבריאות המטבח שלה חשובה לה</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visual representation / Image (photo2.png) -->
+                <div class="flex-1 w-full">
+                    <div class="bg-white rounded-3xl h-80 w-full relative overflow-hidden shadow-lg border-4 border-white">
+                        <!-- Using photo2.png -->
+                        <img src="photo2.png" alt="בחירת מוצרים בחנות" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- --- SECTION 3: OUTCOMES --- -->
+        <div class="mb-32 rounded-[40px] p-8 md:p-16 text-center relative overflow-hidden bg-primary-green">
+            <!-- Background Decorations -->
+            <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <div class="absolute top-10 right-10 w-40 h-40 rounded-full bg-white blur-3xl"></div>
+                <div class="absolute bottom-10 left-10 w-60 h-60 rounded-full bg-yellow-500 blur-3xl"></div>
+            </div>
+
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white">
+                    עם מה תצאי בסוף ההדרכה?
+                </h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white hover:bg-white/15 transition-colors h-full">
+                        <div class="mb-4 inline-block p-3 bg-white/20 rounded-full">
+                            <i data-lucide="filter" class="w-6 h-6 text-yellow-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">סינון חכם</h3>
+                        <p class="opacity-90 font-light text-sm leading-relaxed">
+                            הבנה ברורה אילו ממתיקים נכנסים למטבח שלך ואילו יוצאים.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white hover:bg-white/15 transition-colors h-full">
+                        <div class="mb-4 inline-block p-3 bg-white/20 rounded-full">
+                            <i data-lucide="brain" class="w-6 h-6 text-yellow-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">בהירות ושליטה</h3>
+                        <p class="opacity-90 font-light text-sm leading-relaxed">
+                            אין יותר בלבול בין "טבעי" ל"בריא" – הכל מובן.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white hover:bg-white/15 transition-colors h-full">
+                        <div class="mb-4 inline-block p-3 bg-white/20 rounded-full">
+                            <i data-lucide="shopping-cart" class="w-6 h-6 text-yellow-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">בחירה מעשית</h3>
+                        <p class="opacity-90 font-light text-sm leading-relaxed">
+                            מה לקנות, מה לשלב ומה עדיף להשאיר על המדף.
+                        </p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white hover:bg-white/15 transition-colors h-full">
+                        <div class="mb-4 inline-block p-3 bg-white/20 rounded-full">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-yellow-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">כלים להחלטה</h3>
+                        <p class="opacity-90 font-light text-sm leading-relaxed">
+                            כלים לקבל החלטות נכונות גם מול תוויות מסובכות.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- --- PRICING & CTA --- -->
+        <div id="offer-section" class="relative text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-primary-green">
+                רוצה להבין אחת ולתמיד מה באמת בריא?
+            </h2>
+            <p class="text-xl opacity-80 mb-10">
+                השאירי שם ומייל ותיכנסי לרשימת המשתתפות.<br/>
+                כבר בהרשמה תקבלי ממני הודעה אישית עם כל הפרטים
+                <span class="font-bold mr-1 inline-flex items-center gap-1 text-green-700 bg-green-50 px-2 py-1 rounded-md">
+                    <i data-lucide="mail" class="w-4 h-4"></i> בשליחה מיידית למייל!
+                </span>
             </p>
-          </div>
+            
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-yellow-400/30 relative">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-green-900 font-bold px-6 py-2 rounded-full shadow-lg text-sm">
+                    מחיר מיוחד
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+                    <div class="text-right flex-1">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="play-circle" class="w-5 h-5 text-yellow-500"></i>
+                            <span class="font-medium">הקלטה מלאה לצפייה חוזרת</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="clock" class="w-5 h-5 text-yellow-500"></i>
+                            <span class="font-medium">גישה נוחה מכל מקום</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center bg-gray-50 p-6 rounded-2xl min-w-[200px]">
+                        <p class="text-sm text-gray-500 mb-1">ההשקעה שלך</p>
+                        <div class="text-5xl font-bold text-primary-green">37 ₪</div>
+                    </div>
+                </div>
+
+                <button onclick="handlePurchase()" class="w-full cta-button py-5 text-xl font-bold flex justify-center items-center gap-3 shadow-lg hover:shadow-2xl">
+                    כן, אני רוצה ללמוד מה הממתיק הבריא עבורי
+                    <i data-lucide="chevron-left" class="w-6 h-6" stroke-width="3"></i>
+                </button>
+                
+                <p class="text-xs text-gray-400 mt-6 flex justify-center gap-4">
+                    <span>🔒 תשלום מאובטח</span>
+                    <span>⚡ שליחה מיידית</span>
+                    <span>📩 קבלה נשלחת למייל</span>
+                </p>
+            </div>
         </div>
 
-        {/* Footer */}
-        <footer className="text-center mt-24 text-sm opacity-60 pb-8 border-t border-gray-200 pt-8">
-          <p>© כל הזכויות שמורות | בריאות שבאה מהטבע | רבקה הולצברג</p>
+        <!-- Footer -->
+        <footer class="text-center mt-24 text-sm opacity-60 pb-8 border-t border-gray-200 pt-8">
+            <p>© כל הזכויות שמורות | בריאות שבאה מהטבע | רבקה הולצברג</p>
         </footer>
 
-      </div>
     </div>
-  );
-};
 
-export default LandingPage;
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Scroll to offer
+        function scrollToOffer() {
+            document.getElementById('offer-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle Purchase Link
+        function handlePurchase() {
+            window.location.href = "https://private.invoice4u.co.il/newsite/he/clearing/public/i4u-clearing?ProductGuid=c4b694bb-64c9-4f5e-bb4d-f04499898afa";
+        }
+    </script>
+</body>
+</html>

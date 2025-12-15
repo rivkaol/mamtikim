@@ -422,11 +422,9 @@
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // Send to Make (using no-cors to avoid blocking if headers aren't perfect)
-                // This sends data blindly but ensures the script continues to the redirect
+                // Send to Make (removed no-cors to ensure Content-Type is sent correctly)
                 await fetch(MAKE_WEBHOOK_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },

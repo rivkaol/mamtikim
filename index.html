@@ -102,6 +102,11 @@
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
             background-color: #fff;
         }
+
+        /* Custom validation styles */
+        .form-input:invalid:not(:placeholder-shown) {
+            border-color: #ef4444; /* Red border on invalid */
+        }
         
         /* Smooth scrolling */
         html {
@@ -356,9 +361,33 @@
 
                 <!-- Custom Form -->
                 <form id="leadForm" class="flex flex-col gap-4 mt-4">
-                    <input type="text" name="name" placeholder="שם מלא" required class="form-input">
-                    <input type="email" name="email" placeholder="דואר אלקטרוני" required class="form-input">
-                    <input type="tel" name="phone" placeholder="מספר נייד" required class="form-input">
+                    <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="שם מלא (מינימום 2 אותיות)" 
+                        required 
+                        minlength="2"
+                        pattern="[a-zA-Z\u0590-\u05FF\s]+"
+                        title="נא להזין שם המכיל אותיות בלבד, לפחות 2 תווים"
+                        class="form-input"
+                    >
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="דואר אלקטרוני" 
+                        required 
+                        class="form-input"
+                    >
+                    <input 
+                        type="tel" 
+                        name="phone" 
+                        placeholder="מספר נייד (10 ספרות)" 
+                        required 
+                        pattern="[0-9]{10}"
+                        title="נא להזין מספר נייד תקין בעל 10 ספרות"
+                        inputmode="numeric"
+                        class="form-input"
+                    >
                     
                     <button type="submit" id="submitButton" class="w-full cta-button py-5 text-xl font-bold flex justify-center items-center gap-3 shadow-lg hover:shadow-2xl mt-2">
                         <span>כן, אני רוצה ללמוד מה הממתיק הבריא עבורי</span>
@@ -411,6 +440,12 @@
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
+
+            // Check Validity manually to ensure constraints are met
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
 
             // Disable button to prevent double submit
             const originalButtonText = submitButton.innerHTML;
